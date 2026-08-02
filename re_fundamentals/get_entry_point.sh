@@ -21,7 +21,7 @@ if ! file "$file_name" | grep -q "ELF"; then
 fi
 
 # Extract ELF header information
-magic_number=$(readelf -h "$file_name" | grep "Magic:" | sed 's/^[[:space:]]*Magic:[[:space:]]*//')
+magic_number=$(readelf -h "$file_name" | grep "Magic:" | sed 's/^[[:space:]]*Magic:[[:space:]]*$//')
 class=$(readelf -h "$file_name" | grep "Class:" | sed 's/^[[:space:]]*Class:[[:space:]]*//')
 byte_order=$(readelf -h "$file_name" | grep "Data:" | awk -F', ' '{print $2}')
 entry_point_address=$(readelf -h "$file_name" | grep "Entry point address:" | sed 's/^[[:space:]]*Entry point address:[[:space:]]*//')
